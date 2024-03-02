@@ -7,7 +7,7 @@ import {
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
+  VideoCameraOutlined, 
 } from '@ant-design/icons';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -67,10 +67,10 @@ const LayoutAdmin: React.FC = () => {
             <Outlet />
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
+        {/* <Footer style={{ textAlign: "center" }}>
           Birthdate Booking ©{new Date().getFullYear()} Created by FPT
           University
-        </Footer>
+        </Footer> */}
       </Layout>
     </Layout>
   );

@@ -3,10 +3,11 @@ import Dashboard from "./page/dashboard/Dashboard";
 import GlobalStyles from "./utils/GlobalStyle";
 import LayoutAdmin from "./layout/LayoutAdmin";
 import { NotFoundPage } from "./page/NotFoundPage";
-import { Login } from "./page/Login/Login";
+import Login from "./page/Login/Login";
 import { Bookings } from "./page/bookings/Bookings";
 import { Account } from "./page/Account/Account";
 import { Party } from "./page/Party/Party";
+import Chat from "./page/Chat/Chat";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,21 +18,25 @@ function App() {
       children: [
         {
           index: true,
-          path: 'dashboard',
+          path: "dashboard",
           element: <Dashboard />,
         },
         {
           path: "booking",
-          element: <Bookings/>
+          element: <Bookings />,
         },
         {
           path: "user",
-          element: <Account/>
+          element: <Account />,
         },
         {
           path: "party",
-          element: <Party/>
-        }
+          element: <Party />,
+        },
+        {
+          path: "chat",
+          element: <Chat />,
+        },
       ],
     },
     {
