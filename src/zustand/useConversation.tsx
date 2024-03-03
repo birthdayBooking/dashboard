@@ -1,27 +1,18 @@
 import { create } from "zustand";
 import { message, lastestMessage } from "../models/message";
+import Conversation from "../models/conversation";
 
 interface ConversationState {
-  selectedConversation: string;
-  setSelectedConversation: (selectedConversation: string) => void;
+  selectedConversation: Conversation | null;
+  setSelectedConversation: (selectedConversation: Conversation | null) => void;
   messages: message[];
   setMessages: (messages: message[]) => void;
-  latestMessage: lastestMessage | "";
-  setLatestMessage: (latestMessage: lastestMessage) => void;
+  latestMessage: lastestMessage | string;
+  setLatestMessage: (latestMessage: lastestMessage | string) => void;
 }
 
-// const useConversation = create<ConversationState>((set) => ({
-//   selectedConversation: "",
-//   setSelectedConversation: (selectedConversation) =>
-//     set({ selectedConversation }),
-//   messages: [],
-//   setMessages: (messages) => set({ messages }),
-//   lastestMesssage: "",
-//   setLastestMessage: (lastestMesssage) => set({ lastestMesssage }),
-// }));
-
 const useConversation = create<ConversationState>((set) => ({
-  selectedConversation: "",
+  selectedConversation: null,
   setSelectedConversation: (selectedConversation) =>
     set({ selectedConversation }),
   messages: [],

@@ -52,11 +52,6 @@
   background-color: teal;
   color: white;
 }
-
-.chatOnline {
-  flex: 3;
-}
-
 .chatMenuWrapper,
 .chatBoxWrapper,
 .chatOnlineWrapper {
@@ -90,18 +85,10 @@
 }
 @media screen and (max-width: 768px) {
   .chatMenu {
-    flex: 1;
-  }
-
-  .chatMenuInput {
-    display: none;
+    flex: 5;
   }
 
   .chatBox {
-    flex: 10;
-  }
-
-  .chatOnline {
-    flex: 1px;
+    flex: 5;
   }
 }

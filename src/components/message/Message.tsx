@@ -1,11 +1,16 @@
 import "./message.scss";
 import React from "react";
+import { message } from "../../models/message";
+import { useAuthContext } from "../../context/AuthContext";
 
 interface MessageProps {
-  own: boolean;
+  message: message;
 }
 
-const Message: React.FC<MessageProps> = ({ own }) => {
+const Message: React.FC<MessageProps> = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const own = authUser === message.senderId;
+
   return (
     <div className={own ? "message own" : "message "}>
       <div className={own ? "messageTop right" : "messageTop"}>
@@ -14,15 +19,9 @@ const Message: React.FC<MessageProps> = ({ own }) => {
           src="https://images.pexels.com/photos/3686769/pexels-photo-3686769.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
           alt=""
         />
-        <p className="messageText">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap
-        </p>
+        <p className="messageText">{message.message}</p>
       </div>
-      <div className="messageBottom">{new Date().getTime().toString()}</div>
+      {/* <div className="messageBottom">{new Date().getTime().toString()}</div> */}
     </div>
   );
 };

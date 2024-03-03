@@ -1,5 +1,6 @@
 export interface message {
   createdAt: Date;
+  _id: string;
   message: string;
   receiverId: string;
   senderId: string;
@@ -7,8 +8,9 @@ export interface message {
 }
 
 export interface lastestMessage {
-  senderId: string;
-  isRead: boolean;
-  date: Date;
   message: string;
+}
+
+export interface lastMessage {
+  message: message;
 }
