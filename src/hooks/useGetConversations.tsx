@@ -8,8 +8,6 @@ const useGetConversations = () => {
 
   const { authUser } = useAuthContext();
 
-  console.log(conversations);
-
   useEffect(() => {
     const getConversations = async () => {
       setLoading(true);

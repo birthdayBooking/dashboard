@@ -2,6 +2,7 @@ import React from "react";
 import MessageContainer from "../../components/message/MessageCotainer";
 import Conversations from "../../components/conversations/Conversations";
 import "./Chat.scss";
+import { Divider } from "@mui/material";
 
 const Chat: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Chat: React.FC = () => {
             <Conversations />
           </div>
         </div>
+        <Divider orientation="vertical" variant="middle" flexItem />
         <div className="chatBox">
           <MessageContainer />
         </div>

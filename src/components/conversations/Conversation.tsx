@@ -3,9 +3,11 @@ import "./conversation.scss";
 import ConversationModel from "../../models/conversation";
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/AuthContext";
-// import { useSocketContext } from "../../context/SocketContext";
+import { useSocketContext } from "../../context/SocketContext";
 import { lastestMessage } from "../../models/message";
 import useFetchLatestMessage from "../../hooks/useFetchLatestMessage";
+import { unreadNotification } from "../../utils/unreadNotificaiton";
+import useListenMessages from "../../hooks/useListenMessages";
 
 interface ConversationInterFace {
   conversation: ConversationModel;
@@ -16,10 +18,14 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
 }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { authUser } = useAuthContext();
+  const { getLatestNotifications, markAsRead } = useListenMessages();
+  const { onlineUsers } = useSocketContext();
 
-  // const { onlineUsers } = useSocketContext();
+  const participants = conversation.participants.filter(
+    (participant) => participant !== authUser
+  );
 
-  // const isOnline = onlineUsers.includes(conversation.conversationId);
+  const isOnline = onlineUsers.includes(participants.toString());
 
   const isSelected =
     selectedConversation?.conversationId === conversation.conversationId;
@@ -29,7 +35,11 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
 
   const auth = authUser === lastestMessage?.senderId;
 
-  console.log(auth);
+  const unreadNotifications = unreadNotification(getLatestNotifications());
+
+  const thisUserNotifications = unreadNotifications?.filter((n) => {
+    return n.senderId === conversation?.otherParticipant._id;
+  });
 
   const truncateText = (text: string | lastestMessage) => {
     if (typeof text === "string") {
@@ -44,15 +54,27 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
 
   return (
     <div
-      className={`conversation ${isSelected ? "selected" : ""}`}
-      onClick={() => setSelectedConversation(conversation)}
+      className={`conversation ${isSelected ? "selected" : ""} `}
+      onClick={() => {
+        setSelectedConversation(conversation);
+        if (thisUserNotifications.length > 0) {
+          markAsRead(thisUserNotifications, getLatestNotifications());
+        }
+      }}
     >
-      <img
-        className="conversationImg"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0V6SEIWK4TYkSdm54EdDAncR_UT9M9IyqAA&usqp=CAU"
-        alt=""
-      />
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div className="avatar">
+        <img
+          className="conversationImg"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0V6SEIWK4TYkSdm54EdDAncR_UT9M9IyqAA&usqp=CAU"
+          alt=""
+        />
+        {isOnline && <div className="online-dot"></div>}
+      </div>
+
+      <div
+        className="info"
+        style={{ display: "flex", flexDirection: "column" }}
+      >
         <span className="conversationName">
           {conversation.otherParticipant.lastName}
         </span>
@@ -63,6 +85,15 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
             : truncateText(conversation.newMessage.message)}
         </span>
       </div>
+      {thisUserNotifications.length > 0 && (
+        <div className="notifications" style={{ color: "white" }}>
+          <span className="notification">
+            {thisUserNotifications.length > 0
+              ? thisUserNotifications.length
+              : ""}
+          </span>
+        </div>
+      )}
     </div>
   );
 };

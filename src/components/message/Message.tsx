@@ -21,7 +21,6 @@ const Message: React.FC<MessageProps> = ({ message }) => {
         />
         <p className="messageText">{message.message}</p>
       </div>
-      {/* <div className="messageBottom">{new Date().getTime().toString()}</div> */}
     </div>
   );
 };

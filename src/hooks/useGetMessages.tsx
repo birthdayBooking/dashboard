@@ -29,7 +29,6 @@ const useGetMessages = () => {
       } catch (error) {
         console.log(error);
       } finally {
-        console.log("finish");
         setLoading(false);
       }
     };

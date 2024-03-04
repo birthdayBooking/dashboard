@@ -17,6 +17,9 @@ const MessageContainer: React.FC = () => {
         <NoChatSelected />
       ) : (
         <>
+          <div style={{ width: "100%", textAlign: "center" }}>
+            To: {selectedConversation.otherParticipant.lastName}
+          </div>
           <div className="chatBoxWrapper" id="scrollbar">
             <Messages />
           </div>

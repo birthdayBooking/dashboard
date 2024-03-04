@@ -3,9 +3,9 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
-
   border-radius: 15px;
   overflow: hidden;
+  width: 100%;
 }
 
 .conversation:hover {
@@ -14,7 +14,9 @@
 .selected {
   background-color: rgb(245, 243, 243);
 }
-
+.info {
+  flex: 8;
+}
 .conversationImg {
   width: 40px;
   height: 40px;
@@ -25,4 +27,34 @@
 
 .conversationName {
   font-weight: 500;
+}
+
+.notifications {
+  flex: 0.4;
+  position: relative;
+  font-weight: 500;
+  border-radius: 50%;
+  background-color: limegreen;
+  width: 15px;
+  height: 15px;
+  align-self: flex-start;
+}
+.notification {
+  position: absolute;
+  top: -3px;
+  left: 4px;
+}
+.avatar {
+  position: relative;
+  flex: 2;
+}
+
+.online-dot {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+  background-color: rgb(50, 205, 50);
 }

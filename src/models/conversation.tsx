@@ -2,6 +2,7 @@ interface Conversation {
   conversationId: string;
   otherParticipant: otherParticipant;
   newMessage: newMessage;
+  participants: string[];
 }
 
 interface otherParticipant {

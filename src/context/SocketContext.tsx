@@ -35,32 +35,6 @@ export const SocketContextProvider: React.FC<AuthSocketProviderProps> = ({
   const [socket, setSocket] = useState<Socket | null>(null);
   const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
   const { authUser } = useAuthContext();
-  console.log(authUser);
-
-  // useEffect(() => {
-  //   if (authUser) {
-  //     const socket = io("http://localhost:8080", {
-  //       query: {
-  //         userId: authUser,
-  //       },
-  //     });
-
-  //     setSocket(socket);
-
-  //     // socket.on() is used to listen to the events. can be used both on client and server side
-  //     socket.on("getOnlineUsers", (users) => {
-  //       setOnlineUsers(users);
-  //       console.log(users);
-  //     });
-
-  //     return () => socket.close();
-  //   } else {
-  //     if (socket) {
-  //       socket.close();
-  //       setSocket(null);
-  //     }
-  //   }
-  // }, [authUser]);
 
   useEffect(() => {
     let cleanupFunction: () => void | undefined;
@@ -76,7 +50,6 @@ export const SocketContextProvider: React.FC<AuthSocketProviderProps> = ({
 
       socket.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
-        console.log(users);
       });
 
       cleanupFunction = () => {
