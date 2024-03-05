@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Bookings = () => {
+export const Bookings: React.FC = () => {
   return (
     <div>Bookings</div>
   )

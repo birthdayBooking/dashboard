@@ -25,6 +25,7 @@ const columns: TableProps<Party>["columns"] = [
   },
   {
     title: "Max Customers",
+    dataIndex: "maxCustomers",
     key: "maxCustomers",
     render: (_, record) => (
       <Space size="middle">
@@ -35,6 +36,7 @@ const columns: TableProps<Party>["columns"] = [
   {
     title: "Action",
     key: "action",
+    dataIndex: "action",
     render: () => (
       <Space size="middle">
         <a>
@@ -57,7 +59,13 @@ const PartyUI: React.FC = () => {
       try {
         setIsloading(true);
         const result = await getAll();
-        if (result?.length) setParties(result);
+        if (result?.length) {
+          const partiesWithKey = result.map((party) => ({
+            ...party,
+            key: party.id,
+          }));
+          setParties(partiesWithKey);
+        }
       } catch (error) {
         console.log(error);
       } finally {

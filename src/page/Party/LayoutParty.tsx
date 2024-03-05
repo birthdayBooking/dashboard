@@ -1,4 +1,4 @@
-import { Button, Popconfirm, Space } from "antd";
+import { Button, Space } from "antd";
 import PartyUI from "./Party";
 import ModalAdd from "./Modal";
 import { useState } from "react";
@@ -23,7 +23,7 @@ export const LayoutParty = () => {
       <div style={{ marginTop: 10 }}>
         <PartyUI />
       </div>
-      <ModalAdd open={open} setOpen={setOpen} />
+      <ModalAdd open={open} setOpen={setOpen} />  
     </div>
   );
 };

@@ -23,9 +23,9 @@ const LayoutAdmin: React.FC = () => {
       <Sider
         breakpoint="lg"
         collapsedWidth="1"
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
+        // onCollapse={(collapsed, type) => {
+        //   console.log(collapsed, type);
+        // }}
         collapsible
         collapsed={collapsed}
       >
