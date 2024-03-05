@@ -6,7 +6,7 @@ import { NotFoundPage } from "./page/NotFoundPage";
 import { Login } from "./page/Login/Login";
 import { Bookings } from "./page/bookings/Bookings";
 import { Account } from "./page/Account/Account";
-import { Party } from "./page/Party/Party";
+import { LayoutParty } from "./page/Party/LayoutParty";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,21 +17,21 @@ function App() {
       children: [
         {
           index: true,
-          path: 'dashboard',
+          path: "dashboard",
           element: <Dashboard />,
         },
         {
           path: "booking",
-          element: <Bookings/>
+          element: <Bookings />,
         },
         {
           path: "user",
-          element: <Account/>
+          element: <Account />,
         },
         {
           path: "party",
-          element: <Party/>
-        }
+          element: <LayoutParty />,
+        },
       ],
     },
     {
