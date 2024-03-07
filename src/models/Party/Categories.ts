@@ -1,4 +1,9 @@
 export interface Categories {
-  id: number;
-  name: string;
+  status: string;
+  categories: Category[];
+}
+
+export interface Category {
+  id: string;
+  name: number;
 }

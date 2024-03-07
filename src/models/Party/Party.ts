@@ -1,7 +1,7 @@
 export interface Party {
   id: number;
   perks: string[];
-  images: string[];
+  images: Image;
   name: string;
   category: number;
   address: string;
@@ -10,4 +10,8 @@ export interface Party {
   maxCustomers: number;
   price: number;
   rating: number;
+}
+
+export interface Image {
+  resized: [];
 }

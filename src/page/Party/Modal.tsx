@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
-import FormAdd from "./FormAdd";
+import FormAdd from "./PartyForm";
 import { getAllCategory } from "../../services/apiPatry";
-import { Categories } from "../../models/Party/Categories";
+import { Category } from "../../models/Party/Categories";
 
 const ModalAdd: React.FC<{
   open: boolean;
   setOpen: (open: boolean) => void;
 }> = ({ open, setOpen }) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  // const [formData, setFormData] = useState<object>({});
-  const [category, setCategory] = useState<Categories[]>();
+  const [category, setCategory] = useState<Category[]>();
 
   const handleOk = () => {
     console.log("test");
@@ -24,8 +22,8 @@ const ModalAdd: React.FC<{
   useEffect(() => {
     async function getAllPartyCategory() {
       try {
-        const category = await getAllCategory();
-        setCategory(category);
+        const response = await getAllCategory();
+        setCategory(response.categories);
       } catch (error) {
         console.log(error);
       }
@@ -38,12 +36,11 @@ const ModalAdd: React.FC<{
       title="Add new party"
       open={open}
       onOk={handleOk}
-      confirmLoading={confirmLoading}
       onCancel={handleCancel}
       width={700}
       footer={true}
     >
-      <FormAdd categoryParty={category} />
+      <FormAdd categoryParty={category ?? []} />
     </Modal>
   );
 };
