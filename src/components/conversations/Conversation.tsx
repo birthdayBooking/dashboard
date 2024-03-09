@@ -4,10 +4,11 @@ import ConversationModel from "../../models/conversation";
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/AuthContext";
 import { useSocketContext } from "../../context/SocketContext";
-import { lastestMessage } from "../../models/message";
-import useFetchLatestMessage from "../../hooks/useFetchLatestMessage";
 import { unreadNotification } from "../../utils/unreadNotificaiton";
 import useListenMessages from "../../hooks/useListenMessages";
+import moment from "moment";
+// import { lastestMessage } from "../../models/message";
+// import useFetchLatestMessage from "../../hooks/useFetchLatestMessage";
 
 interface ConversationInterFace {
   conversation: ConversationModel;
@@ -31,9 +32,9 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
     selectedConversation?.conversationId === conversation.conversationId;
 
   // const auth = authUser === conversation.newMessage.senderId;
-  const { lastestMessage } = useFetchLatestMessage(conversation);
+  // const { lastestMessage } = useFetchLatestMessage(conversation);
 
-  const auth = authUser === lastestMessage?.senderId;
+  // const auth = authUser === lastestMessage?.senderId;
 
   const unreadNotifications = unreadNotification(getLatestNotifications());
 
@@ -41,16 +42,16 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
     return n.senderId === conversation?.otherParticipant._id;
   });
 
-  const truncateText = (text: string | lastestMessage) => {
-    if (typeof text === "string") {
-      let shortText = text.substring(0, 20);
-      if (text.length > 20) {
-        shortText = shortText + "...";
-      }
-      return shortText;
-    }
-    return text.toString();
-  };
+  // const truncateText = (text: string | lastestMessage) => {
+  //   if (typeof text === "string") {
+  //     let shortText = text.substring(0, 20);
+  //     if (text.length > 20) {
+  //       shortText = shortText + "...";
+  //     }
+  //     return shortText;
+  //   }
+  //   return text.toString();
+  // };
 
   return (
     <div
@@ -71,29 +72,35 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
         {isOnline && <div className="online-dot"></div>}
       </div>
 
-      <div
-        className="info"
-        style={{ display: "flex", flexDirection: "column" }}
-      >
+      <div className="info">
         <span className="conversationName">
           {conversation.otherParticipant.lastName}
         </span>
-        <span className="conversationName" style={{ color: "gray" }}>
-          {auth ? "Bạn:  " : <>{conversation.otherParticipant.lastName}: </>}
-          {lastestMessage
-            ? truncateText(lastestMessage.message)
-            : truncateText(conversation.newMessage.message)}
-        </span>
       </div>
-      {thisUserNotifications.length > 0 && (
-        <div className="notifications" style={{ color: "white" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          placeContent: "flex-end space-around",
+          alignItems: "flex-end",
+          flex: "2",
+        }}
+      >
+        {thisUserNotifications.length > 0 && (
           <span className="notification">
             {thisUserNotifications.length > 0
               ? thisUserNotifications.length
               : ""}
           </span>
-        </div>
-      )}
+        )}
+        {thisUserNotifications.length > 0 && (
+          <span>
+            {moment(
+              thisUserNotifications[thisUserNotifications.length - 1].date
+            ).format("HH:mm A")}
+          </span>
+        )}
+      </div>
     </div>
   );
 };

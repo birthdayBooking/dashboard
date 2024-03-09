@@ -30,7 +30,6 @@
 }
 
 .notifications {
-  flex: 0.4;
   position: relative;
   font-weight: 500;
   border-radius: 50%;
@@ -38,11 +37,22 @@
   width: 15px;
   height: 15px;
   align-self: flex-start;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 .notification {
-  position: absolute;
-  top: -3px;
-  left: 4px;
+  font-weight: 500;
+  border-radius: 50%;
+  background-color: limegreen;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: antiquewhite;
 }
 .avatar {
   position: relative;
