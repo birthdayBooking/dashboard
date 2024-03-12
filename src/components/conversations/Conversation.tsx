@@ -74,7 +74,9 @@ const ConversationComponent: React.FC<ConversationInterFace> = ({
 
       <div className="info">
         <span className="conversationName">
-          {conversation.otherParticipant.lastName}
+          {conversation.otherParticipant.name
+            ? conversation.otherParticipant.name
+            : conversation.otherParticipant.lastName}
         </span>
       </div>
       <div

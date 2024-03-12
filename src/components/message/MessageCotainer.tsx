@@ -18,7 +18,10 @@ const MessageContainer: React.FC = () => {
       ) : (
         <>
           <div style={{ width: "100%", textAlign: "center" }}>
-            To: {selectedConversation.otherParticipant.lastName}
+            To:{" "}
+            {selectedConversation.otherParticipant.name
+              ? selectedConversation.otherParticipant.name
+              : selectedConversation.otherParticipant.lastName}
           </div>
           <div className="chatBoxWrapper" id="scrollbar">
             <Messages />

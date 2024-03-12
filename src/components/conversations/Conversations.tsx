@@ -4,7 +4,7 @@ import useGetConversations from "../../hooks/useGetConversations";
 import Conversation from "./Conversation";
 import { TextField, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
+import { otherParticipant } from "../../models/conversation";
 const Conversations: React.FC = () => {
   const { conversations } = useGetConversations();
   const [searchText, setSearchText] = useState<string>("");
@@ -12,11 +12,15 @@ const Conversations: React.FC = () => {
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };
+  const keys: Array<keyof otherParticipant> = ["name", "lastName"];
   const filteredRows = conversations.filter((row) =>
-    row.otherParticipant.lastName
-      .toLowerCase()
-      .includes(searchText.toLowerCase())
+    keys.some((key) =>
+      row.otherParticipant[key]
+        ?.toLowerCase()
+        .includes(searchText.toLowerCase())
+    )
   );
+
   return (
     <>
       <TextField

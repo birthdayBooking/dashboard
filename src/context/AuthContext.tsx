@@ -47,7 +47,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
 
       setAuthUser(authen.id);
     }
-  }, []); // Empty depen
+  }, [authUser]); // Empty depen
 
   return (
     <AuthContext.Provider value={{ authUser, setAuthUser }}>

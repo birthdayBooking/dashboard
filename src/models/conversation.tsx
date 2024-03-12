@@ -5,11 +5,12 @@ interface Conversation {
   participants: string[];
 }
 
-interface otherParticipant {
+export interface otherParticipant {
   role: string;
   _id: string;
   firstName: string;
-  lastName: string;
+  lastName?: string;
+  name?: string;
   email: string;
   username: string;
   id: string;

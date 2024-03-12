@@ -40,7 +40,7 @@ export const SocketContextProvider: React.FC<AuthSocketProviderProps> = ({
     let cleanupFunction: () => void | undefined;
 
     if (authUser) {
-      const socket = io("http://localhost:8080", {
+      const socket = io("https://socket-birthdate-booking.onrender.com", {
         query: {
           userId: authUser,
         },
