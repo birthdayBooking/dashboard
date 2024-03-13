@@ -4,7 +4,7 @@ import GlobalStyles from "./utils/GlobalStyle";
 import LayoutAdmin from "./layout/LayoutAdmin";
 import { NotFoundPage } from "./page/NotFoundPage";
 import { Login } from "./page/Login/Login";
-import { Bookings } from "./page/bookings/Bookings";
+import { Bookings } from "./page/bookings";
 import { Account } from "./page/Account/Account";
 import { LayoutParty } from "./page/Party/LayoutParty";
 
