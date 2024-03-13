@@ -1,5 +1,4 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Dashboard from "./page/dashboard/Dashboard";
 import GlobalStyles from "./utils/GlobalStyle";
 import LayoutAdmin from "./layout/LayoutAdmin";
 import { NotFoundPage } from "./page/NotFoundPage";
@@ -7,6 +6,7 @@ import { Login } from "./page/Login/Login";
 import { Bookings } from "./page/bookings";
 import { Account } from "./page/Account/Account";
 import { LayoutParty } from "./page/Party/LayoutParty";
+import { DashBoard } from "./page/dashboard";
 
 function App() {
   const router = createBrowserRouter([
@@ -18,7 +18,7 @@ function App() {
         {
           index: true,
           path: "dashboard",
-          element: <Dashboard />,
+          element: <DashBoard />,
         },
         {
           path: "booking",

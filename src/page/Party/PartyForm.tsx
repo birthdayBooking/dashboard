@@ -18,7 +18,8 @@ const PartyForm = ({ categoryParty }: categoryProps) => {
   const [imagesUrl, setImagesUrl] = useState<imageList[]>([]);
 
   const onFinish = (values: Party) => {
-    console.log("Success:", { ...values, images: imagesUrl });
+    const imagesList = imagesUrl.map(item => item.url)
+    console.log("Success:", { ...values, images: imagesList });
   };
 
   console.log(imagesUrl)

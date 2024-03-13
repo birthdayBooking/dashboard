@@ -1,4 +1,6 @@
 export interface Party {
+  map: any;
+  length: any;
   id: number;
   perks: string[];
   images: Image;
