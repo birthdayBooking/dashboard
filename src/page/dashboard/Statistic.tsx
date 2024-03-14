@@ -1,26 +1,37 @@
 import { Col, Row, Statistic, Space } from "antd";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
-import { getAllRevanue } from "../../services/apiStatistics";
+import { getAllBookings, getAllRevanue } from "../../services/apiStatistics";
 import { useDashBoard } from "../../context/dashboardContext";
+import { PartySummary } from "./PartySummary";
+import { Typography } from "antd";
+
+const { Title } = Typography;
 
 export const Stats = () => {
   const formatter = (value: number) => <CountUp end={value} separator="," />;
   const [loading, setIsloading] = useState<boolean>(false);
-  const [totalRevalue, SetTotalRevaue] = useState<number>(0);
+  const [totalRevanue, setTotalRevaue] = useState<number>(0);
+  const [totalBooking, setTotalBooking] = useState<number>(0);
   const { date, dateRange } = useDashBoard();
 
   useEffect(() => {
     async function getAll() {
-      console.log('date', date)
       try {
         setIsloading(true);
-        const result = await getAllRevanue(date || dateRange); 
-        console.log("total:", result);
-        if (!result.stats[0].totalRevanue) {
-          SetTotalRevaue(0);
+        const result = await getAllRevanue(date || dateRange);
+        const bookings = await getAllBookings(date || dateRange);
+
+        if (result.stats.length > 0) {
+          setTotalRevaue(result.stats[0]?.totalRevanue);
+        } else {
+          setTotalRevaue(0);
         }
-        SetTotalRevaue(result.stats[0]?.totalRevanue);
+        if (bookings.stats.length > 0) {
+          setTotalBooking(bookings.stats[0]?.totalOrders);
+        } else {
+          setTotalBooking(0);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -30,33 +41,33 @@ export const Stats = () => {
     getAll();
   }, [date, dateRange]);
 
-  //console.log("totalRevalue", totalRevalue);
-  // console.log(dateRange)
   return (
-    <div style={{ height: "10px", textAlign: "center" }}>
-      <Space
-        style={{
-          background: "#ffff",
-          padding: 10,
-          borderRadius: 5,
-          width: "80%",
-        }}
-      >
+    <Row>
+      <Col span={10}>
+        <Title level={3}>Summary</Title>
         <Row gutter={16}>
           <Col span={12}>
-            <Statistic title="Bookings" value={112893} formatter={formatter} />
+            <Statistic
+              title="Bookings"
+              value={totalBooking}
+              formatter={formatter}
+              style={{ fontSize: "2.4rem", fontWeight: 500 }}
+            />
           </Col>
           <Col span={12}>
             <Statistic
               title="Revanue"
-              value={totalRevalue}
+              value={totalRevanue}
               precision={2}
               formatter={formatter}
+              style={{ fontSize: "2.4rem", fontWeight: 500 }}
             />
           </Col>
         </Row>
-      </Space>
-      <div style={{ marginTop: 10 }}></div>
-    </div>
+      </Col>
+      <Col span={14}>
+       
+      </Col>
+    </Row>
   );
 };
