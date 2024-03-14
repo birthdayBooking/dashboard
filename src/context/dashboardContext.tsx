@@ -8,7 +8,9 @@ type DashboardContextType = {
   getDate: DateChangeHandler;
   getDateRange: DateRangeChangeHandler;
   date: string;
-  dateRange: [string, string]
+  dateRange: [string, string],
+  setDate: (date: string) => void,
+  setDateRange: (dateRange: string) => void
 };
 
 const DashboardContext = createContext<DashboardContextType | undefined>(
@@ -21,22 +23,26 @@ export const DashboardProvider = ({
   children: React.ReactNode;
 }) => {
 
-  const [date, setDate] = useState<string>();
-  const [dateRange, setDateRange] = useState<[string, string]>()
+  const [date, setDate] = useState<string | null>();
+  const [dateRange, setDateRange] = useState<[string, string] | null>()
 
   const handleDateChange: DateChangeHandler = (date, dateString) => {
     setDate(dateString)
+    setDateRange(null)
   };
 
   const handleRangeChange: DateRangeChangeHandler = (dates, dateStrings) => {
     setDateRange(dateStrings)
+    setDate(null)
   };
 
   const value = {
     getDate: handleDateChange,
     getDateRange: handleRangeChange,
     date,
-    dateRange
+    dateRange,
+    setDate,
+    setDateRange
   };
 
   return (

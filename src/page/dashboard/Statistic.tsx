@@ -8,16 +8,19 @@ export const Stats = () => {
   const formatter = (value: number) => <CountUp end={value} separator="," />;
   const [loading, setIsloading] = useState<boolean>(false);
   const [totalRevalue, SetTotalRevaue] = useState<number>(0);
-  const { date } = useDashBoard();
+  const { date, dateRange } = useDashBoard();
 
   useEffect(() => {
     async function getAll() {
+      console.log('date', date)
       try {
         setIsloading(true);
-        const result = await getAllRevanue(date);
-        if (result?.length) {
-            console.log(result)
+        const result = await getAllRevanue(date || dateRange); 
+        console.log("total:", result);
+        if (!result.stats[0].totalRevanue) {
+          SetTotalRevaue(0);
         }
+        SetTotalRevaue(result.stats[0]?.totalRevanue);
       } catch (error) {
         console.log(error);
       } finally {
@@ -25,9 +28,10 @@ export const Stats = () => {
       }
     }
     getAll();
-  }, [date]);
+  }, [date, dateRange]);
 
-  console.log('re-render', typeof date)
+  //console.log("totalRevalue", totalRevalue);
+  // console.log(dateRange)
   return (
     <div style={{ height: "10px", textAlign: "center" }}>
       <Space
@@ -45,9 +49,9 @@ export const Stats = () => {
           <Col span={12}>
             <Statistic
               title="Revanue"
-              value={112893}
+              value={totalRevalue}
               precision={2}
-              //   formatter={formatter}
+              formatter={formatter}
             />
           </Col>
         </Row>
