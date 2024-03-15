@@ -7,8 +7,9 @@ import {
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined, 
-} from '@ant-design/icons';
+  VideoCameraOutlined,
+} from "@ant-design/icons";
+
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -23,12 +24,9 @@ const LayoutAdmin: React.FC = () => {
       <Sider
         breakpoint="lg"
         collapsedWidth="1"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
-        }}
+        // onCollapse={(collapsed, type) => {
+        //   console.log(collapsed, type);
+        // }}
         collapsible
         collapsed={collapsed}
       >
@@ -51,21 +49,21 @@ const LayoutAdmin: React.FC = () => {
               fontSize: "16px",
               width: 64,
               height: 64,
-              outline: 'none'
+              outline: "none",
             }}
           />
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
-          <div
+          {/* <div
             style={{
               padding: 24,
               minHeight: 360,
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
-          >
-            <Outlet />
-          </div>
+          > */}
+          <Outlet />
+          {/* </div> */}
         </Content>
         {/* <Footer style={{ textAlign: "center" }}>
           Birthdate Booking ©{new Date().getFullYear()} Created by FPT

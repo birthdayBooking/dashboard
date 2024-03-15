@@ -1,13 +1,18 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Dashboard from "./page/dashboard/Dashboard";
 import GlobalStyles from "./utils/GlobalStyle";
 import LayoutAdmin from "./layout/LayoutAdmin";
 import { NotFoundPage } from "./page/NotFoundPage";
+
 import Login from "./page/Login/Login";
-import { Bookings } from "./page/bookings/Bookings";
-import { Account } from "./page/Account/Account";
 import { Party } from "./page/Party/Party";
 import Chat from "./page/Chat/Chat";
+
+//import { Login } from "./page/Login/Login";
+import { Bookings } from "./page/bookings";
+import { LayoutParty } from "./page/Party/LayoutParty";
+import { DashBoard } from "./page/dashboard";
+import { Account } from "./page/Account";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -18,8 +23,9 @@ function App() {
       children: [
         {
           index: true,
-          path: "dashboard",
-          element: <Dashboard />,
+          path: "/dashboard",
+          element: <DashBoard />,
+
         },
         {
           path: "booking",
@@ -36,6 +42,8 @@ function App() {
         {
           path: "chat",
           element: <Chat />,
+          element: <LayoutParty />,
+
         },
       ],
     },
