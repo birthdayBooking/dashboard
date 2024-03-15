@@ -1,10 +1,27 @@
-import React from 'react'
-import backgroundLogin from '../../assets/bia.gif'
+import * as React from "react";
+import Box from "@mui/material/Box";
+import foodImage from "../../assets/images/cake2.jpg";
+import LoginForm from "./LoginForm";
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
   return (
-    <div>
-      <img src={backgroundLogin} alt="Girl in a jacket" width="100vw" height="100vh"/>
-    </div>
-  )
-}
+    <>
+      <Box
+        sx={{
+          backgroundImage: `url(${foodImage})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          height: "100vh",
+          width: "100vw",
+          overflow: "auto",
+        }}
+      >
+        <LoginForm />
+      </Box>
+    </>
+  );
+};
+
+export default Login;
+
+

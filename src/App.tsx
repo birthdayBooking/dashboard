@@ -2,11 +2,17 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import GlobalStyles from "./utils/GlobalStyle";
 import LayoutAdmin from "./layout/LayoutAdmin";
 import { NotFoundPage } from "./page/NotFoundPage";
-import { Login } from "./page/Login/Login";
+
+import Login from "./page/Login/Login";
+import { Party } from "./page/Party/Party";
+import Chat from "./page/Chat/Chat";
+
+//import { Login } from "./page/Login/Login";
 import { Bookings } from "./page/bookings";
 import { LayoutParty } from "./page/Party/LayoutParty";
 import { DashBoard } from "./page/dashboard";
 import { Account } from "./page/Account";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -19,6 +25,7 @@ function App() {
           index: true,
           path: "/dashboard",
           element: <DashBoard />,
+
         },
         {
           path: "booking",
@@ -30,7 +37,13 @@ function App() {
         },
         {
           path: "party",
+          element: <Party />,
+        },
+        {
+          path: "chat",
+          element: <Chat />,
           element: <LayoutParty />,
+
         },
       ],
     },

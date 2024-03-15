@@ -5,6 +5,7 @@ import {
   CoffeeOutlined,
   TeamOutlined,
   PieChartOutlined,
+  MessageOutlined 
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { AppRoutes } from "../constants/Routes";
@@ -48,6 +49,11 @@ export const menuItems: MenuItem[] = [
     <Link to={AppRoutes.party}>Party Management</Link>,
     `/${AppRoutes.party}`,
     <CoffeeOutlined />
+  ),
+  getItem(
+    <Link to={AppRoutes.chat}>Chat Management</Link>,
+    `/${AppRoutes.chat}`,
+    <MessageOutlined />
   ),
 
   //   getItem("Navigation One", "sub1", <MailOutlined />, [
