@@ -15,3 +15,7 @@ export const getStatisticsUser = async (): Promise<any> => {
 export const getPartyStatistics = async (): Promise<any> => {
     return await axios.get(`/api/v1/stats/party`)
 }
+
+export const getTopParty = async (top: string): Promise<any> => {
+    return await axios.get(`/api/v1/stats/hot-party?top=${top}`)
+}

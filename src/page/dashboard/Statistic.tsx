@@ -1,4 +1,4 @@
-import { Col, Row, Statistic, Space } from "antd";
+import { Col, Row, Statistic, Space, Tag } from "antd";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { getAllBookings, getAllRevanue } from "../../services/apiStatistics";
@@ -44,7 +44,17 @@ export const Stats = () => {
   return (
     <Row>
       <Col span={10}>
-        <Title level={3}>Summary</Title>
+        <Tag
+          color="#87d068"
+          style={{
+            marginBottom: 10,
+            fontSize: 16,
+            fontWeight: "bold",
+            padding: "4px 8px",
+          }}
+        >
+          Summary
+        </Tag>
         <Row gutter={16}>
           <Col span={12}>
             <Statistic
@@ -65,9 +75,7 @@ export const Stats = () => {
           </Col>
         </Row>
       </Col>
-      <Col span={14}>
-       
-      </Col>
+      <Col span={14}></Col>
     </Row>
   );
 };

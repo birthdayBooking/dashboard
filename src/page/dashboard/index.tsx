@@ -4,6 +4,7 @@ import DateSelection from "./DateSelection";
 import { Stats } from "./Statistic";
 import { UserStatistics } from "./UserStatistics";
 import { PartySummary } from "./PartySummary";
+import { TopParty } from "./TopParty";
 
 export const DashBoard = () => {
   return (
@@ -53,6 +54,19 @@ export const DashBoard = () => {
             <UserStatistics />
           </Space>
         </Col>
+      </Row>
+      <Row
+        style={{
+          marginTop: 50,
+          width: "80%",
+          margin: "50px auto",
+        }}
+        gutter={16}
+      >
+        <Col span={12}>
+          <TopParty />
+        </Col>
+        <Col span={12}></Col>
       </Row>
     </DashboardProvider>
   );
