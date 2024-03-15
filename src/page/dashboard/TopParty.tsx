@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, Input, Select, Space, Spin, Table, Tag } from "antd";
 import type { TableProps } from "antd";
-import { Typography } from "antd";
 import { getTopParty } from "../../services/apiStatistics";
-import { formatDateToLocal } from "../../utils";
+import { formatDateToLocal, formatPrice } from "../../utils";
+import { TagTitle } from "../../components/TagTitle";
+import { SpaceArea } from "../../components/Space";
 const { Option } = Select;
-const { Title } = Typography;
 
-interface TopParty {
+export interface TopPartyType {
   _id: string;
   name: string;
   price: number;
@@ -16,7 +16,7 @@ interface TopParty {
   numsParty: number;
 }
 
-const columns: TableProps<TopParty>["columns"] = [
+const columns: TableProps<TopPartyType>["columns"] = [
   {
     title: "Name",
     dataIndex: "name",
@@ -51,10 +51,9 @@ const columns: TableProps<TopParty>["columns"] = [
 ];
 
 export const TopParty = () => {
-  const [topHotparty, setTopHotParty] = useState<TopParty[]>([]);
+  const [topHotparty, setTopHotParty] = useState<TopPartyType[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [topSelect, setTopSelect] = useState<string>("5");
-  const [topInput, setTopInput] = useState("");
 
   const [form] = Form.useForm();
 
@@ -64,11 +63,11 @@ export const TopParty = () => {
         setLoading(true);
         const response = await getTopParty(topSelect);
         const topParty = response.topBookingParty.map(
-          (party: TopParty, index: number) => {
+          (party: TopPartyType, index: number) => {
             return {
               key: index + 1,
               name: party.name,
-              price: party.price,
+              price: formatPrice(party.price),
               rating: party.rating,
               createdAt: formatDateToLocal(party.createdAt),
               numsParty: party.numsParty,
@@ -92,20 +91,8 @@ export const TopParty = () => {
   };
 
   return (
-    <div
-      style={{
-        background: "#ffff",
-        padding: 10,
-        borderRadius: 5,
-        width: "100%",
-      }}
-    >
-      <Tag
-        color="#87d068"
-        style={{ marginBottom: 10, fontSize: 16, fontWeight: "bold", padding: '4px 8px'}}
-      >
-        Top party has the highest booking
-      </Tag>
+    <SpaceArea>
+      <TagTitle>Top party has the highest booking</TagTitle>
       <div style={{ display: "flex", gap: 10 }}>
         <Form form={form}>
           <Form.Item label="Select top">
@@ -148,6 +135,6 @@ export const TopParty = () => {
           pagination={false}
         />
       </Spin>
-    </div>
+    </SpaceArea>
   );
 };

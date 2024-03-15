@@ -2,6 +2,7 @@ import { Col, Row, Skeleton, Spin, Statistic, Tag, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getPartyStatistics } from "../../services/apiStatistics";
 import { LoadingOutlined } from "@ant-design/icons";
+import { TagTitle } from "../../components/TagTitle";
 
 const { Title } = Typography;
 
@@ -40,17 +41,7 @@ export const PartySummary = () => {
         indicator={<LoadingOutlined style={{ fontSize: 24 }} />}
         spinning={loading}
       >
-        <Tag
-          color="#87d068"
-          style={{
-            marginBottom: 10,
-            fontSize: 16,
-            fontWeight: "bold",
-            padding: "4px 8px",
-          }}
-        >
-          Party Summary
-        </Tag>
+        <TagTitle>Party Summary</TagTitle>
         <Row>
           <Col span={8}>
             <Col>

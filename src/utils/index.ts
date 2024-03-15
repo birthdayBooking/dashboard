@@ -11,3 +11,13 @@ export const formatDateToLocal = (
   const formatter = new Intl.DateTimeFormat(locale, options);
   return formatter.format(date);
 };
+
+export const formatPrice = (number: number) => {
+  if (number) {
+    return (
+      parseFloat(number.toFixed(2)).toLocaleString("en", {
+        useGrouping: true,
+      }) + " VNĐ"
+    );
+  }
+};

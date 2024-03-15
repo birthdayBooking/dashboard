@@ -5,6 +5,8 @@ import { Stats } from "./Statistic";
 import { UserStatistics } from "./UserStatistics";
 import { PartySummary } from "./PartySummary";
 import { TopParty } from "./TopParty";
+import { MonthlyBooking } from "./MonthlyBooking";
+import { SpaceArea } from "../../components/Space";
 
 export const DashBoard = () => {
   return (
@@ -19,28 +21,14 @@ export const DashBoard = () => {
         gutter={16}
       >
         <Col span={8}>
-          <div
-            style={{
-              background: "#ffff",
-              padding: 10,
-              borderRadius: 5,
-              width: "100%",
-            }}
-          >
+          <SpaceArea>
             <Stats />
-          </div>
+          </SpaceArea>
         </Col>
         <Col span={8}>
-          <div
-            style={{
-              background: "#ffff",
-              padding: 10,
-              borderRadius: 5,
-              width: "100%",
-            }}
-          >
+          <SpaceArea>
             <PartySummary />
-          </div>
+          </SpaceArea>
         </Col>
         <Col span={8}>
           <Space
@@ -66,7 +54,9 @@ export const DashBoard = () => {
         <Col span={12}>
           <TopParty />
         </Col>
-        <Col span={12}></Col>
+        <Col span={12}>
+          <MonthlyBooking />
+        </Col>
       </Row>
     </DashboardProvider>
   );
