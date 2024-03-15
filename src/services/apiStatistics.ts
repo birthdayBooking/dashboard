@@ -1,3 +1,4 @@
+import { monthlyPlan } from "../page/dashboard/MonthlyBooking";
 import { TopPartyType } from "../page/dashboard/TopParty";
 import axios from "../utils/axios-customize";
 
@@ -25,6 +26,6 @@ export const getTopParty = async (top: string): Promise<TopPartyType[]> => {
   return await axios.get(`/api/v1/stats/hot-party?top=${top}`);
 };
 
-export const getMonthlyBookingByYear = async (month: string): Promise<any> => {
+export const getMonthlyBookingByYear = async (month: string): Promise<monthlyPlan[]> => {
   return await axios.get(`/api/v1/stats/monthly-booking/${month}`);
 };

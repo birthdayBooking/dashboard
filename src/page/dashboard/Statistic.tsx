@@ -5,6 +5,7 @@ import { getAllBookings, getAllRevanue } from "../../services/apiStatistics";
 import { useDashBoard } from "../../context/dashboardContext";
 import { PartySummary } from "./PartySummary";
 import { Typography } from "antd";
+import { TagTitle } from "../../components/TagTitle";
 
 const { Title } = Typography;
 
@@ -44,17 +45,7 @@ export const Stats = () => {
   return (
     <Row>
       <Col span={10}>
-        <Tag
-          color="#87d068"
-          style={{
-            marginBottom: 10,
-            fontSize: 16,
-            fontWeight: "bold",
-            padding: "4px 8px",
-          }}
-        >
-          Summary
-        </Tag>
+        <TagTitle>Summary</TagTitle>
         <Row gutter={16}>
           <Col span={12}>
             <Statistic
