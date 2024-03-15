@@ -23,7 +23,7 @@ export const DashboardProvider = ({
   children: React.ReactNode;
 }) => {
 
-  const [date, setDate] = useState<string | null>(new Date().toISOString());
+  const [date, setDate] = useState<string | null>(new Date().toISOString().split('T')[0]);
   const [dateRange, setDateRange] = useState<[string, string] | null>()
 
   const handleDateChange: DateChangeHandler = (date, dateString) => {

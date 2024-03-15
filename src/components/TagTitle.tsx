@@ -7,9 +7,9 @@ export const TagTitle = ({ children }: { children: React.ReactNode }) => {
       color="#1677ff"
       style={{
         marginBottom: 10,
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "bold",
-        padding: "2px 8px",
+        padding: "1px 8px",
       }}
     >
       {children}

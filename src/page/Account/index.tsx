@@ -1,8 +1,8 @@
-import { Button, Space } from 'antd'
+import { Space } from 'antd'
 import React from 'react'
-import BookingTable from './BookingTable'
+import { AccountTable } from './AccountTable'
 
-export const Bookings: React.FC = () => {
+export const Account: React.FC = () => {
   return (
     <div style={{ height: "10px" }}>
       <Space
@@ -15,7 +15,7 @@ export const Bookings: React.FC = () => {
       >
       </Space>
       <div style={{ marginTop: 10 }}>
-        <BookingTable/>
+        <AccountTable/>
       </div>
       {/* <ModalAdd open={open} setOpen={setOpen} /> */}
     </div>

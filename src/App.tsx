@@ -4,9 +4,9 @@ import LayoutAdmin from "./layout/LayoutAdmin";
 import { NotFoundPage } from "./page/NotFoundPage";
 import { Login } from "./page/Login/Login";
 import { Bookings } from "./page/bookings";
-import { Account } from "./page/Account/Account";
 import { LayoutParty } from "./page/Party/LayoutParty";
 import { DashBoard } from "./page/dashboard";
+import { Account } from "./page/Account";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,7 +17,7 @@ function App() {
       children: [
         {
           index: true,
-          path: "dashboard",
+          path: "/dashboard",
           element: <DashBoard />,
         },
         {
