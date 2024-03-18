@@ -37,10 +37,10 @@ const ModalAdd: React.FC<{
       open={open}
       onOk={handleOk}
       onCancel={handleCancel}
-      width={700}
+      width={1000}
       footer={true}
     >
-      <FormAdd categoryParty={category ?? []} />
+      <FormAdd categoryParty={category ?? []}  setOpen={setOpen}/>
     </Modal>
   );
 };

@@ -13,7 +13,6 @@ import { LayoutParty } from "./page/Party/LayoutParty";
 import { DashBoard } from "./page/dashboard";
 import { Account } from "./page/Account";
 
-
 function App() {
   const router = createBrowserRouter([
     {
@@ -25,7 +24,6 @@ function App() {
           index: true,
           path: "/dashboard",
           element: <DashBoard />,
-
         },
         {
           path: "booking",
@@ -37,13 +35,11 @@ function App() {
         },
         {
           path: "party",
-          element: <Party />,
+          element: <LayoutParty />,
         },
         {
           path: "chat",
           element: <Chat />,
-          element: <LayoutParty />,
-
         },
       ],
     },

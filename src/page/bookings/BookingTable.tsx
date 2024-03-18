@@ -24,7 +24,7 @@ const columns: TableProps<Booking>["columns"] = [
     }
   },
   {
-    title: "Date",
+    title: "Date Booking",
     dataIndex: "orderDate",
     key: "orderDate",
   },

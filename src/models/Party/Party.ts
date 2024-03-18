@@ -3,7 +3,7 @@ export interface Party {
   length: any;
   id: number;
   perks: string[];
-  images: Image;
+  images: string[];
   name: string;
   category: number;
   address: string;
@@ -15,5 +15,5 @@ export interface Party {
 }
 
 export interface Image {
-  resized: [];
+  images: [];
 }

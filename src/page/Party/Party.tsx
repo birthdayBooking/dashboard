@@ -5,6 +5,7 @@ import type { TableProps } from "antd";
 import { getAll } from "../../services/apiPatry";
 import { Party } from "../../models/Party/Party";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { formatPrice } from "../../utils";
 
 const columns: TableProps<Party>["columns"] = [
   {
@@ -17,6 +18,9 @@ const columns: TableProps<Party>["columns"] = [
     title: "Price",
     dataIndex: "price",
     key: "price",
+    render: (value) => {
+      return formatPrice(value)
+    }
   },
   {
     title: "Rating",

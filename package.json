@@ -10,19 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-
+    "@ant-design/icons": "^5.3.1",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
+    "@faker-js/faker": "^8.4.1",
     "@mui/icons-material": "^5.15.11",
     "@mui/material": "^5.15.11",
     "@mui/styled-engine-sc": "^6.0.0-alpha.17",
     "antd": "^5.14.2",
-    "jwt-decode": "^4.0.0",
-    "@ant-design/icons": "^5.3.1",
-    "@faker-js/faker": "^8.4.1",
-    "antd": "^5.14.2",
     "axios": "^1.6.7",
     "chart.js": "^4.4.2",
+    "jwt-decode": "^4.0.0",
     "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -32,11 +30,13 @@
     "sass": "^1.71.1",
     "socket.io-client": "^4.7.4",
     "styled-components": "^6.1.8",
+    "uuid": "^9.0.1",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react": "^4.2.1",

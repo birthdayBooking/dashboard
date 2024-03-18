@@ -1,6 +1,6 @@
 import { Space } from 'antd'
 import React from 'react'
-import { AccountTable } from './AccountTable'
+import AccountTable from './AccountTable'
 
 export const Account: React.FC = () => {
   return (

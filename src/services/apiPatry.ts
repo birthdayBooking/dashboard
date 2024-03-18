@@ -9,3 +9,7 @@ export const getAll = async (): Promise<Party> => {
 export const getAllCategory = async (): Promise<Categories> => {
   return await axios.get(`/api/v1/categories`);
 };
+
+export const addParty = async (party: Party) => {
+  return await axios.post(`/api/v1/parties`, party)
+}
