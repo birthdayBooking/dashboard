@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Button, Col, Form, Input, InputNumber, Row, Select } from "antd";
+import {
+  Button,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+  message,
+} from "antd";
 import { Category } from "../../models/Party/Categories";
 import { Party } from "../../models/Party/Party";
 import { UploadImage } from "../../components/UploadImage";
@@ -10,6 +19,7 @@ import { addParty } from "../../services/apiPatry";
 interface CategoryProps {
   categoryParty: Category[];
   setOpen: (isOpen: boolean) => void;
+  getAllParty: () => void
 }
 
 interface imageList {
@@ -21,8 +31,9 @@ interface imageList {
 //   statusVode
 // }
 
-const PartyForm: React.FC<CategoryProps> = ({ categoryParty, setOpen }) => {
+const PartyForm: React.FC<CategoryProps> = ({ categoryParty, setOpen, getAllParty }) => {
   const { TextArea } = Input;
+  const [messageApi, contextHolder] = message.useMessage();
   const [imagesUrl, setImagesUrl] = useState<imageList[]>([]);
   const [list, setList] = useState<PerkType[]>([{ id: uuidv4(), perk: "" }]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -43,6 +54,11 @@ const PartyForm: React.FC<CategoryProps> = ({ categoryParty, setOpen }) => {
       if (result.statusCode === 201) {
         setLoading(false);
         setOpen(false);
+        messageApi.open({
+          type: "success",
+          content: "Add Party success",
+        });
+        getAllParty()
       }
     } catch (error) {
       console.log(error);
@@ -53,6 +69,7 @@ const PartyForm: React.FC<CategoryProps> = ({ categoryParty, setOpen }) => {
 
   return (
     <>
+      {contextHolder}
       <Form
         labelCol={{ span: 7 }}
         wrapperCol={{ span: 14 }}
@@ -88,7 +105,16 @@ const PartyForm: React.FC<CategoryProps> = ({ categoryParty, setOpen }) => {
                   })}
               </Select>
             </Form.Item>
-            <Form.Item label="Max users" name="maxCustomers">
+            <Form.Item
+              label="Max users"
+              name="maxCustomers"
+              rules={[
+                {
+                  required: true,
+                  message: "please set number of users in the party",
+                },
+              ]}
+            >
               <InputNumber min={1} />
             </Form.Item>
             <Form.Item label="Address" name="address">
@@ -106,7 +132,11 @@ const PartyForm: React.FC<CategoryProps> = ({ categoryParty, setOpen }) => {
               {/* <TextArea rows={4} /> */}
               <Perks listPerk={list} setListPerk={setList} />
             </Form.Item>
-            <Form.Item label="Price" name="price">
+            <Form.Item
+              label="Price"
+              name="price"
+              rules={[{ required: true, message: "Price is required" }]}
+            >
               <InputNumber min={100000} style={{ width: 180 }} />
             </Form.Item>
             <Form.Item label="Images" valuePropName="fileList">

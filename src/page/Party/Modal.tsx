@@ -4,10 +4,13 @@ import FormAdd from "./PartyForm";
 import { getAllCategory } from "../../services/apiPatry";
 import { Category } from "../../models/Party/Categories";
 
-const ModalAdd: React.FC<{
+interface ModalProps {
+  getAllParty: () => void;
   open: boolean;
   setOpen: (open: boolean) => void;
-}> = ({ open, setOpen }) => {
+}
+
+const ModalAdd: React.FC<ModalProps> = ({ open, setOpen, getAllParty }) => {
   const [category, setCategory] = useState<Category[]>();
 
   const handleOk = () => {
@@ -40,7 +43,7 @@ const ModalAdd: React.FC<{
       width={1000}
       footer={true}
     >
-      <FormAdd categoryParty={category ?? []}  setOpen={setOpen}/>
+      <FormAdd categoryParty={category ?? []}  setOpen={setOpen} getAllParty={getAllParty}/>
     </Modal>
   );
 };

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Space, Spin, Table } from "antd";
 import type { TableProps } from "antd";
 
-import { getAll } from "../../services/apiPatry";
 import { Party } from "../../models/Party/Party";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { formatPrice } from "../../utils";
@@ -19,8 +18,8 @@ const columns: TableProps<Party>["columns"] = [
     dataIndex: "price",
     key: "price",
     render: (value) => {
-      return formatPrice(value)
-    }
+      return formatPrice(value);
+    },
   },
   {
     title: "Rating",
@@ -54,31 +53,12 @@ const columns: TableProps<Party>["columns"] = [
   },
 ];
 
-const PartyUI: React.FC = () => {
-  const [parties, setParties] = useState<Party[] | undefined>();
-  const [isloading, setIsloading] = useState<boolean>(false);
+interface PartyTableProps {
+  parties: Party[];
+  isloading: boolean;
+}
 
-  useEffect(() => {
-    async function getAllParty() {
-      try {
-        setIsloading(true);
-        const result = await getAll();
-        if (result?.length) {
-          const partiesWithKey = result.map((party) => ({
-            ...party,
-            key: party.id,
-          }));
-          setParties(partiesWithKey);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsloading(false);
-      }
-    }
-    getAllParty();
-  }, []);
-
+const PartyUI: React.FC<PartyTableProps> = ({ parties, isloading }) => {
   return (
     <Spin tip="Loading..." spinning={isloading}>
       <Table columns={columns} dataSource={parties} />

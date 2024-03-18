@@ -30,7 +30,6 @@ const LayoutAdmin: React.FC = () => {
         collapsible
         collapsed={collapsed}
       >
-        <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
           mode="inline"

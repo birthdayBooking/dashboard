@@ -1,10 +1,9 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import GlobalStyles from "./utils/GlobalStyle";
 import LayoutAdmin from "./layout/LayoutAdmin";
-import { NotFoundPage } from "./page/NotFoundPage";
+import NotFound from "./page/NotFoundPage";
 
 import Login from "./page/Login/Login";
-import { Party } from "./page/Party/Party";
 import Chat from "./page/Chat/Chat";
 
 //import { Login } from "./page/Login/Login";
@@ -18,11 +17,10 @@ function App() {
     {
       path: "/",
       element: <LayoutAdmin />,
-      errorElement: <NotFoundPage />,
+      errorElement: <NotFound />,
       children: [
         {
           index: true,
-          path: "/dashboard",
           element: <DashBoard />,
         },
         {
