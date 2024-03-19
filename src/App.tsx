@@ -10,12 +10,17 @@ import { LayoutParty } from "./page/Party/LayoutParty";
 import { DashBoard } from "./page/dashboard";
 import { Account } from "./page/Account";
 import Login from "./page/Login/Login";
+import { ProtectedRoute } from "./page/ProtectedRoute/ProtetedRoute";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <LayoutAdmin />,
+      element: (
+        <ProtectedRoute>
+          <LayoutAdmin />
+        </ProtectedRoute>
+      ),
       errorElement: <NotFound />,
       children: [
         {

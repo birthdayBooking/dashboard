@@ -10,7 +10,6 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 
-
 const { Header, Content, Footer, Sider } = Layout;
 
 const LayoutAdmin: React.FC = () => {
@@ -53,21 +52,8 @@ const LayoutAdmin: React.FC = () => {
           />
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
-          {/* <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
-            }}
-          > */}
           <Outlet />
-          {/* </div> */}
         </Content>
-        {/* <Footer style={{ textAlign: "center" }}>
-          Birthdate Booking ©{new Date().getFullYear()} Created by FPT
-          University
-        </Footer> */}
       </Layout>
     </Layout>
   );

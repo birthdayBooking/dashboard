@@ -82,7 +82,7 @@ export const PartySummary = () => {
             <Col>
               <Statistic
                 title="Average Rating"
-                value={fixedNumber(+party?.avgRating ?? 0)}
+                value={fixedNumber(+party?.avgRating)}
                 style={{ fontSize: "2.4rem", fontWeight: 500 }}
               />
             </Col>

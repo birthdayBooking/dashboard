@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { setAuthUser } = useAuthContext();
+  const { setAuthUser, setIsAuthenticated } = useAuthContext();
   const navigate = useNavigate();
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,11 +46,13 @@ const LoginForm: React.FC = () => {
 
       const data = await response.json();
 
-      localStorage.setItem("chat-user", JSON.stringify(data));
-
-      setLoading(false);
-      setAuthUser(data);
-      navigate("/chat");
+      if(data.status === 'success') {
+        localStorage.setItem("chat-user", JSON.stringify(data));
+        setLoading(false);
+        setAuthUser(data);
+        setIsAuthenticated(true)
+        navigate("/");
+      }
     } catch (error: unknown) {
       console.error("Error during login:", error);
       setText("Login Fail");
@@ -90,6 +92,7 @@ const LoginForm: React.FC = () => {
               onSubmit={handleLogin}
               noValidate
               sx={{ mt: 1 }}
+              autoComplete="true"
             >
               <TextField
                 margin="normal"

@@ -10,6 +10,8 @@ import { jwtDecode } from "jwt-decode";
 interface AuthContextProps {
   authUser: string | null;
   setAuthUser: React.Dispatch<React.SetStateAction<string | null>>;
+  isAuthenticated: boolean;
+  setIsAuthenticated: (isAuth: boolean) => void
 }
 
 interface AuthContextProviderProps {
@@ -39,6 +41,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   children,
 }) => {
   const [authUser, setAuthUser] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
     const auth = JSON.parse(localStorage.getItem("chat-user") || "null");
@@ -50,7 +53,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
   }, [authUser]); // Empty depen
 
   return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthContext.Provider value={{ authUser, setAuthUser, setIsAuthenticated, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
