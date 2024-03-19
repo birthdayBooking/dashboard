@@ -4,7 +4,7 @@ import type { TableProps } from "antd";
 
 import { Party } from "../../models/Party/Party";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { formatDate, formatPrice } from "../../utils";
+import { fixedNumber, formatDate, formatPrice } from "../../utils";
 import { deleteParty } from "../../services/apiPatry";
 import { PartyDetail } from "./PartyDetail";
 
@@ -46,7 +46,7 @@ const PartyUI: React.FC<PartyTableProps> = ({
       key: "rating",
       render: (value) => {
         const convertedNum = +value;
-        return Number(convertedNum.toFixed(1));
+        return fixedNumber(convertedNum)
       },
     },
     {

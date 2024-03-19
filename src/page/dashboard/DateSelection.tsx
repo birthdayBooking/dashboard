@@ -1,4 +1,4 @@
-import { Space } from "antd";
+import { Space, Tooltip } from "antd";
 import React, { useState } from "react";
 import { DatePicker } from "antd";
 import { useDashBoard } from "../../context/dashboardContext";
@@ -7,7 +7,7 @@ import { SwapOutlined } from "@ant-design/icons";
 const { RangePicker } = DatePicker;
 
 const DateSelection: React.FC = () => {
-  const { getDate, getDateRange, setDate, setDateRange } = useDashBoard();
+  const { getDate, getDateRange } = useDashBoard();
   const [isRange, setIsRange] = useState(false);
 
   function changeSelectDateType() {
@@ -24,14 +24,21 @@ const DateSelection: React.FC = () => {
           width: "80%",
         }}
       >
-        <SwapOutlined
-          onClick={changeSelectDateType}
-          style={{
-            cursor: "pointer",
-            fontSize: 17,
-            color: isRange ? "#0284c7" : "",
-          }}
-        />
+        <Tooltip
+          placement="top"
+          title={`${
+            !isRange ? "switch to select range" : "switch to select single date"
+          }`}
+        >
+          <SwapOutlined
+            onClick={changeSelectDateType}
+            style={{
+              cursor: "pointer",
+              fontSize: 17,
+              color: isRange ? "#0284c7" : "",
+            }}
+          />
+        </Tooltip>
         {isRange ? (
           <RangePicker
             placeholder={["Start date", "End date"]}

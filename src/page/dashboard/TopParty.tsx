@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Form, Input, Select, Space, Spin, Table, Tag } from "antd";
 import type { TableProps } from "antd";
 import { getTopParty } from "../../services/apiStatistics";
-import { formatDateToLocal, formatPrice } from "../../utils";
+import { fixedNumber, formatDateToLocal, formatPrice } from "../../utils";
 import { TagTitle } from "../../components/TagTitle";
 import { SpaceArea } from "../../components/Space";
 const { Option } = Select;
@@ -32,6 +32,10 @@ const columns: TableProps<TopPartyType>["columns"] = [
     title: "Rating",
     dataIndex: "rating",
     key: "rating",
+    render: (value) => {
+      const convertedNum = +value;
+      return fixedNumber(convertedNum);
+    },
   },
   {
     title: "Date created",

@@ -10,7 +10,7 @@ export const PartyDetail: React.FC<PartyDetailProps> = ({
   setOpenDrawer,
 }) => {
   return (
-    <Drawer title="Party Detail" onClose={setOpenDrawer} open={open}>
+    <Drawer title="Party Detail" onClose={setOpenDrawer} open={open} size="large">
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>

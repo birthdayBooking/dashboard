@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getPartyStatistics } from "../../services/apiStatistics";
 import { LoadingOutlined } from "@ant-design/icons";
 import { TagTitle } from "../../components/TagTitle";
+import { fixedNumber } from "../../utils";
 
 const { Title } = Typography;
 
@@ -81,7 +82,7 @@ export const PartySummary = () => {
             <Col>
               <Statistic
                 title="Average Rating"
-                value={party?.avgRating}
+                value={fixedNumber(+party?.avgRating ?? 0)}
                 style={{ fontSize: "2.4rem", fontWeight: 500 }}
               />
             </Col>

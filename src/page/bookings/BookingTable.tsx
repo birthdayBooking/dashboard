@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Space, Spin, Table } from "antd";
+import { Space, Spin, Table, Tag } from "antd";
 import type { TableProps } from "antd";
 
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -19,35 +19,34 @@ const columns: TableProps<Booking>["columns"] = [
     dataIndex: "customerId",
     key: "customerId",
     render: (value: string) => {
-      return value
-      return formatDateToLocal(value)
-    }
+      return value;
+    },
   },
   {
     title: "Date Booking",
     dataIndex: "orderDate",
     key: "orderDate",
     render: (value) => {
-      return formatDate(value)
-    }
+      return formatDate(value);
+    },
   },
   {
     title: "Status",
     dataIndex: "status",
     key: "status",
-    // render: (_, record) => (
-    //   <Space size="middle">
-    //     <a>Invite {record.name}</a>
-    //   </Space>
-    // ),
+    render: (value: string) => (
+      <Tag color={value === 'pending' ? 'red' : 'green'} key={value}>
+        {value.toUpperCase()}
+      </Tag>
+    ),
   },
   {
     title: "Amount",
     key: "total",
     dataIndex: "total",
     render: (value: number) => {
-      return formatPrice(value)
-    }
+      return formatPrice(value);
+    },
   },
   {
     title: "Action",

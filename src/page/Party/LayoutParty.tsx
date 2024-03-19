@@ -33,7 +33,7 @@ export const LayoutParty = () => {
 
   console.log(parties);
   return (
-    <div style={{ height: "10px" }}>
+    <div style={{ height: "10px", width: 1400, margin: "0 auto" }}>
       <Space
         style={{
           background: "#ffff",
@@ -47,7 +47,11 @@ export const LayoutParty = () => {
         </Button>
       </Space>
       <div style={{ marginTop: 10 }}>
-        <PartyUI parties={parties} isloading={isloading} getAllParty={getAllParty}/>
+        <PartyUI
+          parties={parties}
+          isloading={isloading}
+          getAllParty={getAllParty}
+        />
       </div>
       <ModalAdd open={open} setOpen={setOpen} getAllParty={getAllParty} />
     </div>
