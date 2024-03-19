@@ -13,3 +13,7 @@ export const getAllCategory = async (): Promise<Categories> => {
 export const addParty = async (party: Party) => {
   return await axios.post(`/api/v1/parties`, party)
 }
+
+export const deleteParty = async (id: string) => {
+  return await axios.delete(`/api/v1/parties/${id}`)
+}

@@ -5,7 +5,7 @@ import type { TableProps } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { getAll } from "../../services/apiBooking";
 import { Booking } from "../../models/Booking/Booking";
-import { formatDateToLocal, formatPrice } from "../../utils";
+import { formatDate, formatDateToLocal, formatPrice } from "../../utils";
 
 const columns: TableProps<Booking>["columns"] = [
   {
@@ -27,6 +27,9 @@ const columns: TableProps<Booking>["columns"] = [
     title: "Date Booking",
     dataIndex: "orderDate",
     key: "orderDate",
+    render: (value) => {
+      return formatDate(value)
+    }
   },
   {
     title: "Status",

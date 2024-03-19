@@ -50,7 +50,6 @@ const PartyForm: React.FC<CategoryProps> = ({ categoryParty, setOpen, getAllPart
     try {
       setLoading(true);
       const result = await addParty(party);
-      console.log(result);
       if (result.statusCode === 201) {
         setLoading(false);
         setOpen(false);

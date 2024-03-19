@@ -7,16 +7,15 @@ import { getAll } from "../../services/apiPatry";
 
 export const LayoutParty = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [parties, setParties] = useState<Party[] | undefined>();
+  const [parties, setParties] = useState<Party[]>();
   const [isloading, setIsloading] = useState<boolean>(false);
-
 
   async function getAllParty() {
     try {
       setIsloading(true);
       const result = await getAll();
       if (result?.length) {
-        const partiesWithKey = result.map((party) => ({
+        const partiesWithKey = result.map((party: Party) => ({
           ...party,
           key: party.id,
         }));
@@ -32,6 +31,7 @@ export const LayoutParty = () => {
     getAllParty();
   }, []);
 
+  console.log(parties);
   return (
     <div style={{ height: "10px" }}>
       <Space
@@ -47,9 +47,9 @@ export const LayoutParty = () => {
         </Button>
       </Space>
       <div style={{ marginTop: 10 }}>
-        <PartyUI parties={parties} isloading={isloading} />
+        <PartyUI parties={parties} isloading={isloading} getAllParty={getAllParty}/>
       </div>
-      <ModalAdd open={open} setOpen={setOpen} getAllParty={getAllParty}/>  
+      <ModalAdd open={open} setOpen={setOpen} getAllParty={getAllParty} />
     </div>
   );
 };
